@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	   <script src="angular.min.js"></script>
+	    <script src="app.js"></script>
+      <style media="screen">
+        h1 {
+            margin-bottom: 30px;
+          }
+          input[type="text"] {
+            width: 200px;
+            float: left;
+          }
+          .narrow-button {
+            float: left;
+            margin-left: 10px;
+          }
+          .loader {
+            display: none;
+            margin-left: 5px;
+            font-size: 10px;
+            float: left;
+            border-top: 1.1em solid rgba(147, 147, 147, 0.2);
+            border-right: 1.1em solid rgba(147, 147, 147, 0.2);
+            border-bottom: 1.1em solid rgba(147, 147, 147, 0.2);
+            border-left: 1.1em solid #676767;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: load8 1.1s infinite linear;
+            animation: load8 1.1s infinite linear;
+          }
+          .loader,
+          .loader:after {
+            border-radius: 50%;
+            width: 3em;
+            height: 3em;
+          }
+          @-webkit-keyframes load8 {
+            0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+            }
+            100% {
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes load8 {
+            0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+            }
+            100% {
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+            }
+          }
+      </style>
+  </head>
+<body ng-app="NarrowItDownApp">
+   <div class="container" ng-controller='NarrowItDownController as menu'>
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+
+    <div class="form-group">
+      <input type="text" placeholder="search term" class="form-control" ng-model="menu.searchTerm">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" ng-click="menu.narrowItDown(menu.searchTerm);">Narrow It Down For Me!</button>
+    </div>
+
+	<found-items
+        items="menu.found"
+		on-remove="menu.removeItem(index)">
+	</found-items>
+  </div>
+
+</body>
+</html>
